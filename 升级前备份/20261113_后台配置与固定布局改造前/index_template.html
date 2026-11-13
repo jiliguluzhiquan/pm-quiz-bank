@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中南知了｜智慧教育产品经理专业笔试题库</title>
+<style>
+:root {--bg:#f5f7fb;--surface:#fff;--ink:#162437;--muted:#617085;--brand:#126ed1;--line:#dfe7f0;--good:#167b57;--bad:#b23c3c;--soft:#eaf3ff;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.72 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+header{background:#122a47;color:white;padding:20px max(18px,calc((100vw - 1450px)/2));display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+header h1{margin:0;font-size:23px;line-height:1.5}header p{margin:1px 0;color:#bdd1e6;font-size:13px}
+#headline{font-size:14px;color:#dfebfc}main{max-width:1450px;margin:20px auto;display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;padding:0 18px}
+aside,.paper{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 25px #1533530b}
+aside{padding:20px;height:max-content;position:sticky;top:14px}
+.label{display:block;font-size:13px;color:var(--muted);margin:14px 0 5px;font-weight:600}
+input[type=search],select,textarea{width:100%;padding:10px 12px;border:1px solid #cdd8e6;border-radius:8px;background:white;color:var(--ink);font:inherit;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px #126ed116}
+button{border:1px solid var(--line);padding:9px 14px;border-radius:8px;background:#fff;color:var(--ink);cursor:pointer;font:inherit;font-size:14px}
+button:hover{border-color:#9fbee2;background:#f7fbff}
+button.primary{background:var(--brand);color:white;border-color:var(--brand)}button.primary:hover{background:#0459ad}
+button.warn{background:#fff6f6;color:var(--bad);border-color:#e9c3c3}
+.btnGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+.meta{background:#f0f5fb;border-radius:10px;padding:12px;color:#485a72;font-size:13px}
+.meta strong{color:var(--ink)}
+#statline{margin:14px 0 8px;font-size:13px;color:var(--muted)}
+.meter{height:8px;background:#e7eef5;overflow:hidden;border-radius:20px}
+#meterfill{height:100%;width:0;background:var(--brand);transition:width .2s}
+#qList{max-height:310px;overflow:auto;margin-top:12px}
+.jump{display:block;width:100%;text-align:left;border:0;border-radius:5px;padding:7px 8px;margin-bottom:3px;font-size:12px;background:transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.jump.on{background:var(--soft);color:#065aae;font-weight:700}
+.small{font-size:12px;color:var(--muted)}
+.paper{padding:28px 34px;min-height:600px}
+.tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.tag{display:inline-block;padding:3px 10px;font-size:12px;border-radius:999px;background:#eef3f8;color:#526782}
+.tag.accent{background:#e8f2ff;color:#1364b9}.tag.high{background:#fff1de;color:#975e11}
+.paper h2{font-size:21px;line-height:1.55;margin:8px 0 14px}
+.scene{white-space:pre-wrap;background:#f5f8fc;border-left:4px solid #76a4db;border-radius:4px;padding:16px;line-height:1.9}
+.option{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);padding:12px 14px;border-radius:10px;margin:12px 0;cursor:pointer}
+.option:hover{border-color:#a3c7ef;background:#fbfdff}
+.option input{margin-top:5px;width:17px;height:17px;accent-color:var(--brand)}
+.option:has(input:checked){background:#eff6ff;border-color:#609ee0}
+textarea{min-height:210px;resize:vertical;line-height:1.8}
+.actionrow{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:22px 0}
+.answer{border-top:1px solid var(--line);margin-top:22px;padding-top:20px}
+.answer h3{margin:5px 0 12px;color:#284b73}
+.answerBody{background:#f6f9fe;padding:16px;border-radius:9px;white-space:pre-wrap;line-height:1.9}
+.rubric{padding-left:23px}.rubric li{margin:10px 0}
+.grade{font-weight:700}.grade.good{color:var(--good)}.grade.bad{color:var(--bad)}
+hr{border:0;border-top:1px solid var(--line);margin:24px 0}
+footer{max-width:1450px;margin:15px auto 30px;padding:0 18px;color:#6e7c90;font-size:12px;text-align:center}
+#notify{min-height:20px;color:var(--brand);font-size:13px}
+@media(max-width:850px){main{grid-template-columns:1fr}aside{position:static}.paper{padding:20px 18px}header{padding:18px}.btnGrid{grid-template-columns:1fr 1fr}}
+@media print{aside,header .right,.actionrow{display:none!important}main{display:block}.paper{box-shadow:none;border:none}}
+
+.aiSettings{margin-top:16px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fbfdff}
+.aiSettings summary{font-weight:700;color:#205083;cursor:pointer}
+.aiSettings .settingsHelp{font-size:12px;color:var(--muted);line-height:1.6;margin:7px 0}
+.aiSettings input{width:100%;padding:9px 11px;border:1px solid #cdd8e6;border-radius:8px;font:inherit}
+.aiSettings .label{margin:9px 0 3px}
+.aiSettings .settingsButtons{display:flex;gap:6px;margin:10px 0}
+.aiSettings .settingsButtons button{flex:1}
+.aiReview{margin-top:12px;padding:12px;background:#f6f9fe;border-radius:9px}
+.gradeHistory{margin:9px 0;border:1px solid var(--line);border-radius:8px;padding:9px;background:#fff}
+.gradeHistory summary{cursor:pointer}
+.gradeHistory p{margin:8px 0}
+.miniHistory{background:#f9fbff;padding:10px 12px;border-radius:8px;line-height:2}
+#diskHint{margin-top:6px}
+
+</style></head>
+<body>
+<header><div><h1>中南知了｜智慧教育产品经理专业笔试题库</h1><p>面向BOSS直聘“智慧教育领域多个方向”岗位 · 纯离线 · 原创模拟题（非真题）</p></div>
+<div class="right" id="headline"></div></header>
+<main>
+<aside>
+<div class="meta">本地题库 <strong id="allcount"></strong> 道 · 20个模块<br>覆盖单选、多选、判断、主观、实操。答案与参考评分要点随题保存。</div>
+<label class="label" for="search">关键词搜索（支持中文）</label><input type="search" id="search" placeholder="如 RAG、错题、权限、A/B...">
+<label class="label" for="moduleSel">知识模块</label><select id="moduleSel"></select>
+<label class="label" for="typeSel">题目类型</label>
+<select id="typeSel"><option value="">所有题型</option><option>单选题</option><option>多选题</option><option>判断题</option><option>主观题</option><option>实操题</option></select>
+<label class="label" for="levelSel">难度</label><select id="levelSel"><option value="">全部难度</option><option>基础</option><option>进阶</option><option>综合</option></select>
+<div class="btnGrid"><button class="primary" id="allBtn">全题库练习</button><button id="mockBtn">随机60题模考</button><button id="wrongBtn">错题集</button><button id="masteredBtn">已掌握错题</button><button id="favBtn">只看收藏</button><button id="shuffleBtn">随机一题</button><button id="clearBtn">重置筛选</button></div>
+<div id="statline"></div><div class="meter"><div id="meterfill"></div></div>
+<div class="btnGrid"><button id="exportBtn">导出进度</button><button id="importBtn">导入进度</button></div><input type="file" id="importFile" accept=".json,application/json" style="display:none">
+<details class="aiSettings" id="aiSettings">
+<summary>AI 判分设置（自有API）</summary>
+<div id="aiStatus" class="settingsHelp">正在检测本机AI评分服务…</div>
+<label class="label" for="aiBase">API Base URL</label>
+<input id="aiBase" value="https://api.siliconflow.cn/v1" spellcheck="false" autocomplete="off">
+<label class="label" for="aiModel">模型名称</label>
+<input id="aiModel" value="deepseek-ai/DeepSeek-V3.2" spellcheck="false" autocomplete="off">
+<label class="label" for="aiKey">API Key（密码输入框）</label>
+<input id="aiKey" type="password" placeholder="只在这台Mac本地输入，留空不修改已存Key" autocomplete="new-password" spellcheck="false">
+<div class="settingsButtons"><button id="saveAiConfigBtn" class="primary">保存配置</button><button id="deleteKeyBtn">清除Key</button></div>
+<p class="settingsHelp">密钥写入macOS钥匙串，不写进题库或浏览器本地存储。仅在你点击AI判分并确认后，才把题目、参考答案、评分标准及你的作答发送到所选模型服务；可能产生API费用。</p>
+</details><div id="diskHint" class="small">浏览器本地记录，可随时导出进度</div>
+<div id="notify" role="status"></div><div id="qList"></div>
+</aside>
+<section class="paper">
+<div id="qcard"></div>
+<div class="actionrow"><button id="prevBtn">上一题 ←</button><button id="nextBtn" class="primary">下一题 →</button><button id="bookBtn">☆ 收藏</button><button id="revealBtn">查看答案/评分标准</button></div>
+<div id="solutions"></div>
+</section>
+</main>
+<footer>不使用AI时可完全离线刷题。仅在你主动点击AI判分并确认后，才通过本地服务向已设置的第三方模型发送该题与作答；进度保存在本机，建议定期导出JSON备份。</footer>
+<script>
+"use strict";
+const BANK = /*__QUESTION_DATA__*/;
+const STORAGE_KEY = "ZL_EDU_PM_BANK_20261113_V1";
+const LETTERS = "ABCDEF";
+const SERVICE = (location.protocol === "http:" && location.hostname === "127.0.0.1" && location.port === "18765");
+let progress={};
+try {progress=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}");} catch(_){progress={};}
+if(!progress || typeof progress!=="object" || Array.isArray(progress))progress={};
+let view=BANK.slice(), pointer=0, mode="all", revealed=false;
+let saveTimer=null, saveChain=Promise.resolve(), aiConfigured=false, aiBusy=false, ready=false;
+const $=id=>document.getElementById(id);
+const fmtTime=s=>s?new Date(s).toLocaleString("zh-CN",{hour12:false}):"历史记录";
+function html(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function note(s){$("notify").textContent=s;setTimeout(()=>{if($("notify").textContent===s)$("notify").textContent="";},4000);}
+function state(q){
+ let p=progress[q.id];
+ if(!p || typeof p!=="object" || Array.isArray(p)){p={};progress[q.id]=p;}
+ if(!Array.isArray(p.answers))p.answers=[];
+ if(!Array.isArray(p.attempts))p.attempts=[];
+ if(!Array.isArray(p.aiGrades))p.aiGrades=[];
+ if(typeof p.fav!=="boolean")p.fav=false;
+ if(typeof p.draft!=="string")p.draft="";
+ if(typeof p.reviewed!=="boolean")p.reviewed=false;
+ if(typeof p.checked!=="boolean")p.checked=false;
+ if(typeof p.correct!=="boolean")p.correct=false;
+ if(typeof p.everWrong!=="boolean")p.everWrong=false;
+ if(typeof p.mastered!=="boolean")p.mastered=false;
+ // 兼容2026-11-13第一版的旧进度：保留第一次提交的结果，而不是重置
+ if(!p.attempts.length && p.checked && ["单选题","多选题","判断题"].includes(q.type)){
+   p.attempts=[{answers:p.answers.slice(),correct:p.correct,at:null,fromOldVersion:true}];
+   if(!p.correct)p.everWrong=true;
+   if(p.everWrong && p.correct)p.mastered=true;
+ }
+ if(p.attempts.some(x=>x.correct===false))p.everWrong=true;
+ if(p.everWrong && p.attempts.length){
+   const last=p.attempts[p.attempts.length-1];
+   if(!p.repeating)p.mastered=!!last.correct;
+ }
+ return p;
+}
+function syncLocal(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(progress));}catch(_){$("notify").textContent="本地存储空间不足，请先导出进度备份";}}
+function syncDisk(){
+ if(!SERVICE)return;
+ const snapshot=JSON.stringify({progress});
+ // 串行写入，避免连续输入导致的旧数据覆盖新数据
+ saveChain=saveChain.catch(()=>{}).then(async()=>{
+   try{
+     const response=await fetch("/api/progress",{method:"POST",headers:{"Content-Type":"application/json"},body:snapshot});
+     if(!response.ok)throw Error("本机磁盘保存失败");
+   }catch(_){$("diskHint").textContent="浏览器进度已保存；本机备份暂不可用，请导出JSON。";}
+ });
+}
+function store(){
+ syncLocal();
+ if(SERVICE){clearTimeout(saveTimer);saveTimer=setTimeout(syncDisk,650);}
+}
+function pendingWrong(q){const p=progress[q.id];return !!(p&&p.everWrong&&!p.mastered);}
+function solvedWrong(q){const p=progress[q.id];return !!(p&&p.everWrong&&p.mastered);}
+function filterList(){
+ const term=$("search").value.trim().toLowerCase(), mod=$("moduleSel").value, typ=$("typeSel").value, level=$("levelSel").value;
+ return BANK.filter(q=>{
+   if(mod&&q.module_code!==mod)return false;
+   if(typ&&q.type!==typ)return false;
+   if(level&&q.difficulty!==level)return false;
+   if(mode==="wrong"&&!pendingWrong(q))return false;
+   if(mode==="mastered"&&!solvedWrong(q))return false;
+   if(mode==="fav"&&!(progress[q.id]&&progress[q.id].fav))return false;
+   if(!term)return true;
+   return [q.id,q.module,q.topic,q.question,q.answer,q.explanation].concat(q.options||[]).join(" ").toLowerCase().includes(term);
+ });
+}
+function refresh(){if(mode!=="mock")view=filterList();pointer=0;revealed=false;render();}
+function shuffle(items){const a=items.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function startMock(){
+ const count={"单选题":30,"多选题":15,"判断题":10,"主观题":4,"实操题":1}, chosen=[];
+ Object.keys(count).forEach(t=>chosen.push(...shuffle(BANK.filter(q=>q.type===t)).slice(0,count[t])));
+ view=shuffle(chosen);mode="mock";pointer=0;revealed=false;render();
+ note("已抽取60道题；客观题自动判分，主观与实操题可AI评分或自评。");
+}
+function calcStats(){
+ const attempts=BANK.filter(q=>progress[q.id] && (progress[q.id].checked || (progress[q.id].attempts||[]).length || progress[q.id].reviewed || (progress[q.id].aiGrades||[]).length));
+ const objective=BANK.filter(q=>["单选题","多选题","判断题"].includes(q.type)&&progress[q.id]&&(progress[q.id].attempts||[]).length);
+ const latestCorrect=objective.filter(q=>progress[q.id].attempts.at(-1).correct).length;
+ const wrong=BANK.filter(pendingWrong).length, mastered=BANK.filter(solvedWrong).length;
+ $("statline").textContent="已练 "+attempts.length+" / "+BANK.length+
+   " · 最近一次答对 "+latestCorrect+"/"+objective.length+
+   " · 待复习错题 "+wrong+" · 已掌握错题 "+mastered+
+   " · 当前 "+view.length+" 道";
+ $("meterfill").style.width=(100*attempts.length/BANK.length)+"%";
+ $("headline").textContent="已完成 "+attempts.length+" 道 / "+BANK.length+" 道";
+ $("wrongBtn").textContent="错题集（"+wrong+"）";
+ $("masteredBtn").textContent="已掌握错题（"+mastered+"）";
+}
+function renderList(){
+ const el=$("qList");el.innerHTML="";
+ if(!view.length)return;
+ const start=Math.max(0,pointer-30),subset=view.length>95?view.slice(start,Math.min(view.length,pointer+65)):view;
+ subset.forEach((q,i)=>{
+   const pos=(view.length>95?start:0)+i,p=progress[q.id]||{};
+   const b=document.createElement("button");b.className="jump"+(pos===pointer?" on":"");
+   b.textContent=(pos+1)+". "+q.type+" | "+q.topic+(p.everWrong? (p.mastered?" ✓":" ×"):"")+(p.fav?" ★":"");
+   b.title=q.question.slice(0,75);
+   b.onclick=()=>{pointer=pos;revealed=false;render();window.scrollTo({top:0,behavior:"smooth"});};
+   el.appendChild(b);
+ });
+}
+function renderHistory(p){
+ if(!p.attempts || !p.attempts.length)return "";
+ const lines=p.attempts.map((a,i)=>'<span class="tag '+(a.correct?"accent":"high")+'">第'+(i+1)+'次：'+(a.correct?"正确":"错误")+(a.at?" · "+html(fmtTime(a.at)):"")+'</span>').join(" ");
+ return '<div class="miniHistory"><strong>历史作答：</strong> '+lines+'</div>';
+}
+function renderAiHistory(p){
+ if(!p.aiGrades.length)return '<div class="small">尚无AI评分记录，按现有100分评分标准进行练习。</div>';
+ let s='<div class="aiReview"><strong>AI评分记录（最新优先，非官方成绩）</strong>';
+ p.aiGrades.slice().reverse().forEach(g=>{
+   s+='<details class="gradeHistory"><summary><strong>'+html(g.score)+'/100分</strong> · '+html(g.model||"AI")+' · '+html(fmtTime(g.scored_at))+'</summary>';
+   s+='<p class="small">评分时作答摘要：'+html(g.answer_excerpt||"")+'</p>';
+   s+='<p>'+html(g.summary||"")+'</p>';
+   if(g.dimension_scores&&g.dimension_scores.length){
+     s+='<ol class="rubric">'+g.dimension_scores.map(d=>'<li><strong>'+html(d.point)+'：'+html(d.score)+'/'+html(d.max)+'分</strong> · '+html(d.reason)+'</li>').join("")+'</ol>';
+   }
+   if(g.strengths&&g.strengths.length)s+='<p><strong>做得好的：</strong>'+html(g.strengths.join("；"))+'</p>';
+   if(g.improvements&&g.improvements.length)s+='<p><strong>改进建议：</strong>'+html(g.improvements.join("；"))+'</p>';
+   s+='</details>';
+ });
+ return s+'</div>';
+}
+function render(){
+ calcStats();renderList();$("solutions").innerHTML="";
+ if(!view.length){$("qcard").innerHTML="<h2>没有符合条件的题目</h2><p>可返回全题库，或改用其他筛选项。</p>";return;}
+ pointer=Math.min(Math.max(0,pointer),view.length-1);
+ const q=view[pointer],p=state(q),isObj=["单选题","多选题","判断题"].includes(q.type),many=q.type==="多选题";
+ let text='<div class="tags"><span class="tag accent">'+html(q.module_code+" · "+q.module)+'</span><span class="tag">'+html(q.type)+'</span><span class="tag">'+html(q.difficulty)+'</span>'+(q.priority==="高"?'<span class="tag high">重点</span>':'')+'<span class="tag">'+(pointer+1)+' / '+view.length+'</span><span class="tag">建议'+q.suggested_minutes+'分钟</span></div>';
+ text+='<h2>'+html(q.topic)+'</h2><div class="scene">'+html(q.question)+'</div>';
+ if(isObj){
+   const opts=q.type==="判断题"?["正确","错误"]:q.options;
+   text+='<div id="choices">';
+   opts.forEach((o,i)=>{
+     const code=q.type==="判断题"?o:LETTERS[i],selected=p.answers.includes(code);
+     text+='<label class="option"><input type="'+(many?"checkbox":"radio")+'" name="ans" value="'+html(code)+'" '+(selected?"checked":"")+' '+(p.checked?"disabled":"")+'><span><strong>'+(q.type==="判断题"?"":code+". ")+'</strong>'+html(o)+'</span></label>';
+   });
+   text+='</div><div class="actionrow"><button class="primary" id="submitBtn" '+(p.checked?"disabled":"")+'>提交答案并判分</button>';
+   if(p.attempts.length||p.checked)text+='<button id="redoBtn">↻ 重新作答</button>';
+   if(p.checked)text+='<span class="grade '+(p.correct?"good":"bad")+'">'+(p.correct?"已答对 ✓":"已答错 ×")+'</span>';
+   if(p.everWrong)text+='<span class="tag '+(p.mastered?"accent":"high")+'">'+(p.mastered?"已掌握 · 保留记录":"待复习错题")+'</span>';
+   text+='</div>'+renderHistory(p);
+ }else{
+   text+='<h3>请在这里记录你的解题思路或交付结构</h3><textarea id="draft" placeholder="可写PRD摘要、业务流程、方案取舍、计算或伪代码；不会在未点击AI判分时上传任何答案。">'+html(p.draft)+'</textarea>';
+   text+='<div class="actionrow"><button id="reviewBtn" class="primary">'+(p.reviewed?"已标记完成 ✓":"标记已完成")+'</button><button id="aiScoreBtn">AI判分（自有API）</button><span class="small">AI按本题100分评分要点打分，可重复提交、比较提升。</span></div>';
+   text+='<div id="aiResult">'+renderAiHistory(p)+'</div>';
+ }
+ $("qcard").innerHTML=text;
+ const inputs=document.querySelectorAll("#choices input");
+ inputs.forEach(node=>node.addEventListener("change",()=>{
+   if(p.checked)return;
+   p.answers=Array.from(document.querySelectorAll("#choices input:checked")).map(x=>x.value);
+   store();
+ }));
+ if(isObj){
+   $("submitBtn").onclick=()=>{
+     const chosen=(p.answers||[]).slice().sort().join("");
+     if(!chosen){note("请先选择答案");return;}
+     const correct=q.type==="判断题"
+       ?(p.answers.length===1 && p.answers[0]===q.answer)
+       :(chosen===q.answer.split("").sort().join(""));
+     p.checked=true;p.correct=correct;
+     const stamp=new Date().toISOString();
+     p.lastAttemptAt=stamp;
+     p.attempts.push({answers:p.answers.slice(),correct,at:stamp});
+     if(!correct)p.everWrong=true;
+     if(p.everWrong)p.mastered=correct;
+     p.repeating=false;
+     store();revealed=true;render();
+   };
+   if($("redoBtn"))$("redoBtn").onclick=()=>{
+     if(!window.confirm("重新作答不会删除历史成绩，确定继续？"))return;
+     p.checked=false;p.answers=[];p.repeating=true;p.correct=false;
+     if(p.everWrong)p.mastered=false;
+     store();revealed=false;render();note("已进入重练，请重新选择并提交答案");
+   };
+ }else{
+   $("draft").oninput=e=>{p.draft=e.target.value;store();};
+   $("reviewBtn").onclick=()=>{p.reviewed=true;store();render();};
+   $("aiScoreBtn").onclick=()=>scoreWithAI(q,p);
+ }
+ $("bookBtn").textContent=p.fav?"★ 已收藏":"☆ 收藏";
+ if(revealed||p.checked)showSolution(q);
+}
+function showSolution(q){
+ let s='<div class="answer"><h3>参考答案与解析</h3>';
+ if(q.options.length||q.type==="判断题")s+='<p><strong>正确答案：</strong>'+html(q.answer)+'</p>';
+ s+='<div class="answerBody">'+html(q.explanation)+'</div>';
+ if(q.rubric&&q.rubric.length){
+   s+='<h3>评分标准（共100分）</h3><ol class="rubric">'+q.rubric.map(x=>'<li><strong>'+html(x.point)+'（'+x.score+'分）</strong>：'+html(x.hint)+'</li>').join("")+'</ol>';
+ }
+ s+='<p class="small">模拟题参考答案不代表中南知了官方标准，也不是唯一可行解。</p></div>';
+ $("solutions").innerHTML=s;
+}
+async function api(path,payload){
+ const r=await fetch(path,{method:payload?"POST":"GET",headers:payload?{"Content-Type":"application/json"}:{},body:payload?JSON.stringify(payload):undefined,credentials:"omit"});
+ let response={};
+ try{response=await r.json();}catch(_){throw Error("本机服务没有返回有效JSON");}
+ if(!r.ok||response.error)throw Error(response.error||"请求失败，状态码"+r.status);
+ return response;
+}
+async function loadAiConfig(){
+ if(!SERVICE){
+   $("aiStatus").textContent="当前是离线文件模式。普通刷题照常使用；AI判分需双击“开始刷题.command”启动本地服务。";
+   return;
+ }
+ try{
+   const cfg=await api("/api/ai/config");
+   aiConfigured=!!cfg.configured;
+   $("aiModel").value=cfg.model||"";
+   $("aiBase").value=cfg.base_url||"";
+   $("aiStatus").textContent=aiConfigured?"API Key已保存于Mac钥匙串，可开始AI判分。":"尚未设置API Key，请在下方输入并保存。";
+ }catch(e){$("aiStatus").textContent="AI服务配置读取失败："+e.message;}
+}
+async function saveAiConfig(deleteKey){
+ if(!SERVICE){note("请先双击“开始刷题.command”启动本地服务，再在浏览器配置AI。");return;}
+ const btn=$("saveAiConfigBtn");btn.disabled=true;
+ try{
+   const payload={model:$("aiModel").value.trim(),base_url:$("aiBase").value.trim()};
+   if(deleteKey)payload.delete_key=true;
+   else if($("aiKey").value.trim())payload.api_key=$("aiKey").value.trim();
+   const out=await api("/api/ai/config",payload);
+   aiConfigured=!!out.configured;
+   $("aiKey").value="";
+   $("aiStatus").textContent=aiConfigured?"配置已保存，密钥保存在Mac钥匙串，不在网页中留存。":"Key已清除，可以随时重新填写。";
+   note("AI设置已更新");
+ }catch(e){$("aiStatus").textContent="保存失败："+e.message;}
+ finally{btn.disabled=false;}
+}
+async function scoreWithAI(q,p){
+ if(!SERVICE){note("AI判分需要启动本地服务。请双击“开始刷题.command”，使用新打开的网页。");$("aiSettings").open=true;return;}
+ const draft=$("draft").value.trim();
+ if(draft.length<20){note("请先写至少20字的完整作答，再调用AI判分");return;}
+ if(!aiConfigured){note("请先在AI设置中保存API Key");$("aiSettings").open=true;return;}
+ if(aiBusy)return;
+ if(!window.confirm("本次AI判分会将题目、参考评分标准和你的作答发送到所设置的第三方模型服务，可能产生API费用。确定提交？"))return;
+ p.draft=draft;store();aiBusy=true;
+ const button=$("aiScoreBtn");button.disabled=true;button.textContent="AI正在评分…";
+ try{
+   const payload=await api("/api/ai/score",{id:q.id,draft});
+   const grade={...payload.result,answer_excerpt:draft.slice(0,400),answer_length:draft.length};
+   if(!Array.isArray(p.aiGrades))p.aiGrades=[];
+   p.aiGrades.push(grade);
+   if(p.aiGrades.length>20)p.aiGrades=p.aiGrades.slice(-20);
+   p.reviewed=true;store();
+   if(view[pointer]&&view[pointer].id===q.id)render();
+   note("AI评分完成："+grade.score+"/100分；可在评分记录展开查看各项扣分");
+ }catch(e){note("AI评分未完成："+e.message);}
+ finally{
+   aiBusy=false;
+   if($("aiScoreBtn")){$("aiScoreBtn").disabled=false;$("aiScoreBtn").textContent="AI判分（自有API）";}
+ }
+}
+function mergeProgress(remote,local){
+ const result={...remote};
+ for(const [id,p] of Object.entries(local)){
+   if(!BANK_IDS.has(id))continue;
+   const a=result[id];
+   if(!a){result[id]=p;continue;}
+   const scoreA=(a.attempts||[]).length+(a.aiGrades||[]).length;
+   const scoreB=(p.attempts||[]).length+(p.aiGrades||[]).length;
+   const la=a.lastAttemptAt||"",lb=p.lastAttemptAt||"";
+   let chosen=(scoreB>scoreA || (scoreB===scoreA&&lb>la))?p:a;
+   chosen={...chosen,fav:!!(a.fav||p.fav),reviewed:!!(a.reviewed||p.reviewed)};
+   result[id]=chosen;
+ }
+ return result;
+}
+const BANK_IDS=new Set(BANK.map(q=>q.id));
+async function hydrateProgress(){
+ if(!SERVICE)return;
+ try{
+   const res=await api("/api/progress");
+   const remote=res.progress&&typeof res.progress==="object"?res.progress:{};
+   progress=mergeProgress(remote,progress);
+   syncLocal();render();
+   syncDisk();
+   $("diskHint").textContent="进度同步至浏览器及Mac本地备份";
+ }catch(_){$("diskHint").textContent="本机进度同步不可用；仍可使用浏览器保存和手动导出";}
+}
+$("moduleSel").innerHTML='<option value="">所有知识模块</option>'+Object.keys(BANK.reduce((a,q)=>(a[q.module_code]=q.module,a),{})).sort().map(k=>'<option value="'+k+'">'+k+" · "+html(BANK.find(q=>q.module_code===k).module)+'</option>').join("");
+$("allcount").textContent=BANK.length;
+["search","moduleSel","typeSel","levelSel"].forEach(id=>$(id).addEventListener(id==="search"?"input":"change",()=>{mode="all";refresh();}));
+$("allBtn").onclick=()=>{mode="all";refresh();};
+$("mockBtn").onclick=startMock;
+$("wrongBtn").onclick=()=>{mode="wrong";refresh();};
+$("masteredBtn").onclick=()=>{mode="mastered";refresh();};
+$("favBtn").onclick=()=>{mode="fav";refresh();};
+$("clearBtn").onclick=()=>{$("search").value="";["moduleSel","typeSel","levelSel"].forEach(id=>$(id).value="");mode="all";refresh();};
+$("shuffleBtn").onclick=()=>{if(!view.length)return;pointer=Math.floor(Math.random()*view.length);revealed=false;render();};
+$("prevBtn").onclick=()=>{if(pointer>0){pointer--;revealed=false;render();window.scrollTo(0,0);}};
+$("nextBtn").onclick=()=>{if(pointer<view.length-1){pointer++;revealed=false;render();window.scrollTo(0,0);}};
+$("revealBtn").onclick=()=>{if(!view.length)return;revealed=!revealed;render();};
+$("bookBtn").onclick=()=>{if(!view.length)return;const p=state(view[pointer]);p.fav=!p.fav;store();render();};
+$("exportBtn").onclick=()=>{
+ const blob=new Blob([JSON.stringify({date:new Date().toISOString(),version:2,progress},null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="中南知了_刷题进度备份.json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);note("进度已导出；不包含API Key");
+};
+$("importBtn").onclick=()=>$("importFile").click();
+$("importFile").onchange=async e=>{
+ const file=e.target.files[0];if(!file)return;
+ try{
+   const data=JSON.parse(await file.text());
+   if(!data.progress||typeof data.progress!=="object"||Array.isArray(data.progress))throw Error("找不到progress字段");
+   if(!window.confirm("导入会与现有进度合并；重叠题目尽量保留作答次数更多的记录。确定导入？"))return;
+   progress=mergeProgress(progress,data.progress);
+   syncLocal();syncDisk();refresh();note("进度导入成功，旧版记录已兼容");
+ }catch(err){note("导入失败："+err.message);}finally{e.target.value="";}
+};
+$("saveAiConfigBtn").onclick=()=>saveAiConfig(false);
+$("deleteKeyBtn").onclick=()=>{if(window.confirm("确定清除Mac钥匙串中当前题库的API Key？"))saveAiConfig(true);};
+document.addEventListener("keydown",e=>{
+ if(["INPUT","TEXTAREA","SELECT"].includes(document.activeElement.tagName))return;
+ if(e.key==="ArrowRight")$("nextBtn").click();
+ if(e.key==="ArrowLeft")$("prevBtn").click();
+});
+window.addEventListener("pagehide",()=>{if(SERVICE){clearTimeout(saveTimer);syncDisk();}});
+BANK.forEach(q=>{if(progress[q.id])state(q);});
+render();
+hydrateProgress().then(()=>{BANK.forEach(q=>{if(progress[q.id])state(q);});refresh();});
+loadAiConfig();
+
+</script></body></html>

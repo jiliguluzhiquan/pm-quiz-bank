@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-13",
+  "total": 1078,
+  "modules": 20,
+  "seed_cases": 200,
+  "types": {
+    "单选题": 418,
+    "多选题": 200,
+    "判断题": 200,
+    "主观题": 200,
+    "实操题": 60
+  },
+  "fts": "FTS5 trigram 中文全文索引",
+  "duplicates": 0,
+  "sources": [
+    "用户提供的2026年11月BOSS直聘JD截图与正式公告截图",
+    "https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm",
+    "https://app.www.gov.cn/govdata/gov/202310/24/508651/article.html",
+    "https://www.moe.gov.cn/srcsite/A16/s3342/201911/t20191122_409333.html",
+    "https://www.cse.edu.cn/index/detail.html?category=31&id=4240"
+  ]
+}
