@@ -103,6 +103,8 @@ def load_bank():
         rows[q["id"]] = q
     return rows
 BANK = load_bank()
+# 单选题升级后旧ID S1/S2不与新题复用，历史作答可作为备份保留但不计入新题分数。
+LEGACY_SINGLE_ID = re.compile(r"^ZL-M\d{2}-\d{3}-S[12]$")
 
 class AIProviderError(RuntimeError):
     def __init__(self,message,status=502):
@@ -246,7 +248,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.path in ("/","/index.html","/打开刷题系统.html"):
             return self._send(200,(ROOT/"打开刷题系统.html").read_bytes(),"text/html; charset=utf-8")
         if self.path=="/api/health":
-            return self._send(200,{"ok":True,"version":"2.0"})
+            return self._send(200,{"ok":True,"version":"2.1","bank_count":len(BANK)})
         if self.path=="/api/progress":
             with DATA_LOCK: info=read_json(PROGRESS_PATH,{})
             return self._send(200,{"progress":info.get("progress",{})})
@@ -268,10 +270,10 @@ class Handler(BaseHTTPRequestHandler):
             data=self._load_post()
             if self.path=="/api/progress":
                 p=data.get("progress")
-                if not isinstance(p,dict) or len(p)>1500:
+                if not isinstance(p,dict) or len(p)>2600:
                     raise ValueError("题库进度结构无效")
                 clean={k:safe_record(v) for k,v in p.items()
-                       if k in BANK and isinstance(v,dict)}
+                       if (k in BANK or LEGACY_SINGLE_ID.fullmatch(k)) and isinstance(v,dict)}
                 with DATA_LOCK:atomic_json(PROGRESS_PATH,{"updated_at":now(),"progress":clean})
                 return self._send(200,{"ok":True,"count":len(clean)})
             if self.path=="/api/ai/score":

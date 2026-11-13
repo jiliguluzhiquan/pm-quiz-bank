@@ -90,7 +90,8 @@ def add(qid, mod, topic, t, question, options, answer, explanation, rubric=None,
         "explanation": explanation,
         "rubric": rubric or [],
         "suggested_minutes": duration if duration else (1 if t=="J" else 2 if t=="S" else 3 if t=="M" else 15 if t=="W" else 45),
-        "origin": "基于用户提供的中南知了BOSS直聘JD原创编写，非官方真题",
+        "origin": ("依据2026年上市公司公告及公司招聘资料核对编写，非官方真题"
+                   if mod == "M21" else "基于中南知了岗位JD及教育产品案例原创编写，非官方真题"),
     })
 
 ESSAY_STEMS = [
@@ -109,20 +110,7 @@ for mod, desc in MODULES.items():
         b1, b2, b3 = case["bad1"], case["bad2"], case["bad3"]
         metric = case["metric"]
         tag = f"ZL-{mod}-{i:03d}"
-        choices, ans = shuffled_options(tag+"-S1", [(g1, True),(b1,False),(b2,False),(b3,False)])
-        add(tag+"-S1", mod, concept, "S",
-            f"【{concept}｜决策题】{scene}。作为产品经理，以下哪项最适合作为首要决策？",
-            choices, ans,
-            f"首要方向是：{g1}。其依据是本场景需要围绕真实用户任务、业务约束及效果形成闭环；还应结合“{g2}”验证方案。"
-            f"不宜采取“{b1}”“{b2}”或“{b3}”等做法。建议观察：{metric}。",
-            difficulty="基础" if i%3==0 else "进阶")
-        choices, ans = shuffled_options(tag+"-S2", [(g2,True),(b1,False),(b2,False),(b3,False)])
-        add(tag+"-S2", mod, concept, "S",
-            f"【{concept}｜落实题】面对“{scene}”这一实际场景，确定方向以后，以下哪项后续工作最有利于落地和验证？",
-            choices, ans,
-            f"配套工作应是：{g2}。它能够把方案转化为可执行、可验证的步骤；"
-            f"同时要补充“{g3}”。错误选项分别忽视了必要的用户、质量、权限或风险控制。可监测：{metric}。",
-            difficulty="进阶")
+        # 旧版明显错误干扰项S1/S2已停用；由advanced_single_generator独立生成新ID H1/H2。
         positives = [(g1,True),(g2,True)]
         negatives = [(b1,False),(b2,False)]
         if i%3 == 0:
@@ -241,11 +229,18 @@ for i, (mod, topic, prompt, opts, result, expl) in enumerate(NUMERICAL, 1):
         f"{expl} 相关产品决策还需检查口径和业务风险。",
         difficulty="基础" if i < 11 else "进阶")
 
+from advanced_single_generator import add_all
+advanced_counts=add_all(SRC,MODULES,add,shuffled_options,MODULE_WEIGHT)
+# 以知识模块→单选/多选/判断/主观/实操排序，用户打开题库先看到进阶单选。
+order={"S":0,"M":1,"J":2,"W":3,"P":4}
+ITEMS.sort(key=lambda q:(q["module_code"],order[q["type_code"]],q["id"]))
+
 # ---- 数据完整性检查 ----
 counts = collections.Counter(q["type"] for q in ITEMS)
-expected = {"单选题":418,"多选题":200,"判断题":200,"主观题":200,"实操题":60}
+expected = {"单选题":418+advanced_counts["curated"]+advanced_counts["company"],"多选题":200,"判断题":200,"主观题":200,"实操题":60}
+assert advanced_counts["rewritten"]==400
 assert dict(counts) == expected, (counts,expected)
-assert len(ITEMS) == 1078
+assert len(ITEMS) == 1078+advanced_counts["curated"]+advanced_counts["company"]
 assert len({q["id"] for q in ITEMS}) == len(ITEMS)
 texts = [re.sub(r"\s+", "", q["question"]) for q in ITEMS]
 assert len(set(texts)) == len(texts), "发现重复题干"
@@ -343,13 +338,18 @@ assert "/*__QUESTION_DATA__*/" not in result_html
 stats={
  "date":"2026-11-13", "total":len(ITEMS),"modules":len(MODULES),
  "seed_cases":sum(len(v["cases"]) for v in MODULES.values()),
+ "advanced_singles":advanced_counts,
+ "difficulty_upgrade":"已替换400道基础单选为H1/H2新ID，新增人工进阶与核实企业题；旧S1/S2备份保留，避免旧答题记录错配",
  "types":dict(counts), "fts":fts_status,
  "duplicates":len(texts)-len(set(texts)),
  "sources":["用户提供的2026年11月BOSS直聘JD截图与正式公告截图",
             "https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm",
             "https://app.www.gov.cn/govdata/gov/202310/24/508651/article.html",
             "https://www.moe.gov.cn/srcsite/A16/s3342/201911/t20191122_409333.html",
-            "https://www.cse.edu.cn/index/detail.html?category=31&id=4240"],
+            "https://www.cse.edu.cn/index/detail.html?category=31&id=4240",
+            "https://www.gaoxiaojob.com/announcement/detail/440318.html",
+            "https://epaper.cs.com.cn/zgzqb/html/2026-09/15/nw.D110000zgzqb_20260915_4-B064.htm",
+            "https://epaper.cs.com.cn/zgzqb/html/2026-10/08/nw.D110000zgzqb_20261008_4-B013.htm"],
 }
 (ROOT/"题库质量报告.json").write_text(json.dumps(stats,ensure_ascii=False,indent=2),encoding="utf-8")
 print(json.dumps(stats,ensure_ascii=False,indent=2))

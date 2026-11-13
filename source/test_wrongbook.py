@@ -15,6 +15,7 @@ window.addEventListener("load",function(){
  const res=[];
  try{
   window.confirm=()=>true;
+  view=BANK.filter(x=>x.type==="单选题");pointer=0;revealed=false;render();
   const q=view[0], wrong=LETTERS.split("").find(x=>x!==q.answer);
   let btn=Array.from(document.querySelectorAll("#choices input")).find(x=>x.value===wrong);
   btn.click();document.getElementById("submitBtn").click();

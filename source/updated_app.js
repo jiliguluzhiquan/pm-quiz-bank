@@ -7,7 +7,7 @@ let progress={};
 try {progress=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}");} catch(_){progress={};}
 if(!progress || typeof progress!=="object" || Array.isArray(progress))progress={};
 let view=BANK.slice(), pointer=0, mode="all", revealed=false;
-let saveTimer=null, saveChain=Promise.resolve(), aiBusy=false, ready=false;
+let saveTimer=null, saveChain=Promise.resolve(), aiBusy=false, ready=false, diskSyncReady=false;
 let lastRenderedQuestionId=null;
 const $=id=>document.getElementById(id);
 const fmtTime=s=>s?new Date(s).toLocaleString("zh-CN",{hour12:false}):"历史记录";
@@ -41,7 +41,7 @@ function state(q){
 }
 function syncLocal(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(progress));}catch(_){$("notify").textContent="本地存储空间不足，请先导出进度备份";}}
 function syncDisk(){
- if(!SERVICE)return;
+ if(!SERVICE || !diskSyncReady)return;
  const snapshot=JSON.stringify({progress});
  // 串行写入，避免连续输入导致的旧数据覆盖新数据
  saveChain=saveChain.catch(()=>{}).then(async()=>{
@@ -53,7 +53,7 @@ function syncDisk(){
 }
 function store(){
  syncLocal();
- if(SERVICE){clearTimeout(saveTimer);saveTimer=setTimeout(syncDisk,650);}
+ if(SERVICE && diskSyncReady){clearTimeout(saveTimer);saveTimer=setTimeout(syncDisk,650);}
 }
 function pendingWrong(q){const p=progress[q.id];return !!(p&&p.everWrong&&!p.mastered);}
 function solvedWrong(q){const p=progress[q.id];return !!(p&&p.everWrong&&p.mastered);}
@@ -247,6 +247,13 @@ const BANK_IDS=new Set(BANK.map(q=>q.id));
 async function hydrateProgress(){
  if(!SERVICE)return;
  try{
+   const health=await api("/api/health");
+   if(health.bank_count!==BANK.length){
+     $("diskHint").textContent="服务仍在使用旧题库，请关闭并重启“开始刷题.command”；浏览器仍可保存本次练习并导出进度。";
+     note("题库已升级，请重启本机刷题服务以启用新版题库。");
+     return;
+   }
+   diskSyncReady=true;
    const res=await api("/api/progress");
    const remote=res.progress&&typeof res.progress==="object"?res.progress:{};
    progress=mergeProgress(remote,progress);
@@ -289,7 +296,7 @@ document.addEventListener("keydown",e=>{
  if(e.key==="ArrowRight")$("nextBtn").click();
  if(e.key==="ArrowLeft")$("prevBtn").click();
 });
-window.addEventListener("pagehide",()=>{if(SERVICE){clearTimeout(saveTimer);syncDisk();}});
+window.addEventListener("pagehide",()=>{if(SERVICE&&diskSyncReady){clearTimeout(saveTimer);syncDisk();}});
 BANK.forEach(q=>{if(progress[q.id])state(q);});
 render();
 hydrateProgress().then(()=>{BANK.forEach(q=>{if(progress[q.id])state(q);});refresh();});

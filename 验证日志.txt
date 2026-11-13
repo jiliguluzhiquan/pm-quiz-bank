@@ -1,10 +1,16 @@
 {
   "date": "2026-11-13",
-  "total": 1078,
-  "modules": 20,
+  "total": 1264,
+  "modules": 21,
   "seed_cases": 200,
+  "advanced_singles": {
+    "rewritten": 400,
+    "curated": 162,
+    "company": 24
+  },
+  "difficulty_upgrade": "已替换400道基础单选为H1/H2新ID，新增人工进阶与核实企业题；旧S1/S2备份保留，避免旧答题记录错配",
   "types": {
-    "单选题": 418,
+    "单选题": 604,
     "多选题": 200,
     "判断题": 200,
     "主观题": 200,
@@ -17,6 +23,9 @@
     "https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm",
     "https://app.www.gov.cn/govdata/gov/202310/24/508651/article.html",
     "https://www.moe.gov.cn/srcsite/A16/s3342/201911/t20191122_409333.html",
-    "https://www.cse.edu.cn/index/detail.html?category=31&id=4240"
+    "https://www.cse.edu.cn/index/detail.html?category=31&id=4240",
+    "https://www.gaoxiaojob.com/announcement/detail/440318.html",
+    "https://epaper.cs.com.cn/zgzqb/html/2026-09/15/nw.D110000zgzqb_20260915_4-B064.htm",
+    "https://epaper.cs.com.cn/zgzqb/html/2026-10/08/nw.D110000zgzqb_20261008_4-B013.htm"
   ]
 }
